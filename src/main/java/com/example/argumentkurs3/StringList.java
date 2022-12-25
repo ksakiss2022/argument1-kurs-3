@@ -1,3 +1,5 @@
+
+
 package com.example.argumentkurs3;
 
 public interface StringList {
