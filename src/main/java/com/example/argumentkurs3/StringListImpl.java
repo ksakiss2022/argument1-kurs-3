@@ -1,5 +1,3 @@
-
-
 package com.example.argumentkurs3;
 
 import java.util.Arrays;

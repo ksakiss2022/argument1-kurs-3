@@ -1,5 +1,3 @@
-
-
 package com.example.argumentkurs3;
 
 public class InvalidIndexExeption extends RuntimeException {
