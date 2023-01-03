@@ -3,6 +3,7 @@ package com.example.argumentkurs3;
 import java.util.Arrays;
 import java.util.Random;
 
+
 public class IntegerListImpl implements IntegerList {
     private Integer[] integerList;
     private int size;
@@ -222,7 +223,7 @@ public class IntegerListImpl implements IntegerList {
         for (int i = 0; i < integers.length - 1; i++) {
             for (int j = 0; j < integers.length - 1 - i; j++) {
                 if (integers[j] > integers[j + 1]) {
-                    swapElements(integers,j, j + 1);
+                    swapElements(integers, j, j + 1);
                 }
             }
         }

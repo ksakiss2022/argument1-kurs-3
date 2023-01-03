@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 class IntegerListImplTest {
     private IntegerListImpl integers1;
     private IntegerListImpl integers2;
@@ -48,7 +49,7 @@ class IntegerListImplTest {
 
     @Test
     public void addByIndex() {
-        integers1.add(1,1);
+        integers1.add(1, 1);
         integers2.add(1, 1);
         Assertions.assertTrue(integers2.equals(integers1));
     }
