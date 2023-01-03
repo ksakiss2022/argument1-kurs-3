@@ -48,7 +48,7 @@ class IntegerListImplTest {
 
     @Test
     public void addByIndex() {
-        integers1.add(1,1);
+        integers1.add(1, 1);
         integers2.add(1, 1);
         Assertions.assertTrue(integers2.equals(integers1));
     }
