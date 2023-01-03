@@ -3,6 +3,7 @@ package com.example.argumentkurs3;
 import java.util.Arrays;
 import java.util.Random;
 
+
 public class IntegerListImpl implements IntegerList {
     private Integer[] integerList;
     private int size;

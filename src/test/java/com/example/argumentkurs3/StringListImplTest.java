@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+
 class IntegerListImplTest {
     private IntegerListImpl integers1;
     private IntegerListImpl integers2;
