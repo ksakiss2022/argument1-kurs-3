@@ -101,7 +101,7 @@ class IntegerListImplTest {
     }
 
     @Test
-    void testRemoveByString() {
+    void testRemoveByInteger() {
         integers1.remove(1);
         integers2.remove(1);
         Assertions.assertTrue(integers1.equals(integers2));

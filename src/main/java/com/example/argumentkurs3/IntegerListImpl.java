@@ -22,7 +22,7 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public Integer add(Integer item) {
-        validateSize();
+        growIfNeeded();
         validateItem(item);
         integerList[size++] = item;
         return item;
@@ -30,7 +30,7 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public Integer add(int index, Integer item) {
-        validateSize();
+        growIfNeeded();
         validateItem(item);
         validateIndex(index);
         if (index == size) {
@@ -142,9 +142,14 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    private void validateSize() {
+    //    private void validateSize() {
+//        if (size == integerList.length) {
+//            throw new StorageIsFullExeption();
+//        }
+//    }
+    private void growIfNeeded() {
         if (size == integerList.length) {
-            throw new StorageIsFullExeption();
+            grow();
         }
     }
 
@@ -154,17 +159,48 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
+    //    private void sort(Integer[] arr) {
+//        for (int i = 1; i < arr.length; i++) {
+//            int temp = arr[i];
+//            int j = i;
+//            while (i > 0 && arr[j - 1] >= temp) {
+//                arr[i] = arr[j - 1];
+//                j--;
+//            }
+//            arr[j] = temp;
+//        }
+//    }
     private void sort(Integer[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int temp = arr[i];
-            int j = i;
-            while (i > 0 && arr[j - 1] >= temp) {
-                arr[i] = arr[j - 1];
-                j--;
-            }
-            arr[j] = temp;
+        quickSort(arr, 0, arr.length - 1);
+    }
+
+    private void quickSort(Integer[] arr, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+            quickSort(arr, begin, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, end);
         }
     }
+
+    private int partition(Integer[] arr, int begin, int end) {
+        int pivot = arr[end];
+        int i = (begin - 1);
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swapElements(arr, i, j);
+            }
+        }
+        swapElements(arr, i + 1, end);
+        return i + 1;
+    }
+
+    private static void swapElements(Integer[] arr, int i1, int i2) {
+        int temp = arr[i1];
+        arr[i1] = arr[i2];
+        arr[i2] = temp;
+    }
+
 
     public static void main(String[] args) {
         Integer[] integers1 = IntegerListImpl.toRondomArray();
@@ -186,7 +222,7 @@ public class IntegerListImpl implements IntegerList {
         for (int i = 0; i < integers.length - 1; i++) {
             for (int j = 0; j < integers.length - 1 - i; j++) {
                 if (integers[j] > integers[j + 1]) {
-                    swapElements(integers, j, j + 1);
+                    swapElements(integers,j, j + 1);
                 }
             }
         }
@@ -213,18 +249,13 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    private static void swapElements(Integer[] arr, int indexA, int indexB) {
-        int tmp = arr[indexA];
-        arr[indexA] = arr[indexB];
-        arr[indexB] = tmp;
-    }
-
     // сортировка выбором
-    private static void sortSelection(Integer[] integers) {
-        for (int i = 0; i < integers.length - 1; i++) {
-            for (int j = 0; j < integers.length - 1 - i; j++) {
-                if (integers[j] > integers[j + 1]) {
-                    swapElements(integers, j, j + 1);
+    private static void sortSelection(Integer[] sort) {
+        for (int i = 0; i < sort.length - 1; i++) {
+            for (int j = 0; j < sort.length - 1 - i; j++) {
+                if (sort[j] > sort[j + 1]) {
+                    swapElements(sort, j, j + 1);
+
                 }
             }
         }
@@ -235,4 +266,9 @@ public class IntegerListImpl implements IntegerList {
         IntegerListImpl.sortInsertion(integers);
         return Arrays.binarySearch(integers, item);
     }
+
+    private void grow() {
+        integerList = Arrays.copyOf(integerList, size + size / 2);
+    }
+
 }
